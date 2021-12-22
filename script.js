@@ -3,6 +3,7 @@ window.onload = function () {
     let textInput = document.querySelector('#texto-tarefa');
     let addTaskButton = document.querySelector('#criar-tarefa');
     let taskList = document.querySelector('#lista-tarefas');
+    let completedTask = document.querySelector('#lista-tarefas');
 
     addTaskButton.addEventListener('click', function() {
         if (textInput.value.length > 0) {
@@ -16,12 +17,24 @@ window.onload = function () {
     
     taskList.addEventListener('click', function(event) {
         let backgroundColor = event.target
-        let clear = document.getElementsByClassName('task')
+        let clear = document.getElementsByClassName('task');
         for (index = 0; index < clear.length; index += 1) {
             clear[index].style.backgroundColor = '';
+            clear[index].classList.remove('selected');
         }
         backgroundColor.style.backgroundColor = 'rgb(128, 128, 128)';
+        backgroundColor.classList.add('selected');
     });
+
+    completedTask.addEventListener('dblclick', function(event) {
+        let completed = event.target;      
+        if (completed.classList.contains('completed')) {
+            completed.classList.remove('completed');
+        } else {
+            completed.classList.add('completed');
+        }; 
+    });
+    //'classList.contains' retirado do site: https://developer.mozilla.org/pt-BR/docs/Web/API/Element/classList
 };
 
 let header = document.createElement('header');
