@@ -4,6 +4,8 @@ window.onload = function () {
     let addTaskButton = document.querySelector('#criar-tarefa');
     let taskList = document.querySelector('#lista-tarefas');
     let completedTask = document.querySelector('#lista-tarefas');
+    let clearAllButton = document.querySelector('#apaga-tudo');
+    let clearCompletedButton = document.querySelector('#remover-finalizados');
 
     addTaskButton.addEventListener('click', function() {
         if (textInput.value.length > 0) {
@@ -35,6 +37,17 @@ window.onload = function () {
         }; 
     });
     //'classList.contains' retirado do site: https://developer.mozilla.org/pt-BR/docs/Web/API/Element/classList
+
+    clearAllButton.addEventListener('click', function() {
+        let list = document.getElementById('lista-tarefas');
+        let tasks = document.getElementsByClassName('task');
+        if (tasks.length > 0) {
+            for (index = tasks.length-1; index >= 0; index -= 1) {
+                let element = tasks[index];
+                list.removeChild(element);
+            };
+        };
+    });
 };
 
 let header = document.createElement('header');
@@ -69,10 +82,19 @@ let todoList = document.createElement('ol');
 todoList.id = 'lista-tarefas';
 listSection.appendChild(todoList);
 
+let clearSection = document.createElement('section');
+clearSection.id = 'remove-tarefas';
+document.body.appendChild(clearSection);
 
+let buttonClearAll = document.createElement('button');
+buttonClearAll.id = 'apaga-tudo';
+buttonClearAll.innerText = 'Limpar Lista';
+clearSection.appendChild(buttonClearAll);
 
-
-
+let buttonClearCompleted = document.createElement('button');
+buttonClearCompleted.id = 'remover-finalizados';
+buttonClearCompleted.innerText = 'Limpar Finalizados';
+clearSection.appendChild(buttonClearCompleted);
 
 //localStorage
 
