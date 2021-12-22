@@ -8,10 +8,20 @@ window.onload = function () {
         if (textInput.value.length > 0) {
             let newLi = document.createElement('li');
             newLi.innerText = textInput.value;
+            newLi.className = 'task'
             textInput.value = null;
             taskList.appendChild(newLi);
         };
-    });        
+    });
+    
+    taskList.addEventListener('click', function(event) {
+        let backgroundColor = event.target
+        let clear = document.getElementsByClassName('task')
+        for (index = 0; index < clear.length; index += 1) {
+            clear[index].style.backgroundColor = '';
+        }
+        backgroundColor.style.backgroundColor = 'rgb(128, 128, 128)';
+    });
 };
 
 let header = document.createElement('header');
