@@ -1,3 +1,19 @@
+window.onload = function () {
+
+    let textInput = document.querySelector('#texto-tarefa');
+    let addTaskButton = document.querySelector('#criar-tarefa');
+    let taskList = document.querySelector('#lista-tarefas');
+
+    addTaskButton.addEventListener('click', function() {
+        if (textInput.value.length > 0) {
+            let newLi = document.createElement('li');
+            newLi.innerText = textInput.value;
+            textInput.value = null;
+            taskList.appendChild(newLi);
+        };
+    });        
+};
+
 let header = document.createElement('header');
 document.body.appendChild(header);
 
@@ -18,6 +34,24 @@ let input = document.createElement('input');
 input.id = 'texto-tarefa';
 inputSection.appendChild(input);
 
+let buttonAdd = document.createElement('button');
+buttonAdd.id = 'criar-tarefa';
+buttonAdd.innerHTML = 'Adicionar';
+inputSection.appendChild(buttonAdd);
+
+let listSection = document.createElement('section');
+document.body.appendChild(listSection);
+
+let todoList = document.createElement('ol');
+todoList.id = 'lista-tarefas';
+listSection.appendChild(todoList);
+
+
+
+
+
+
+//localStorage
 
 
 
